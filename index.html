@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Inbox List</title>
+  <meta name="description" content="Inbox List element">
+
+  <!-- Mobile -->
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+
+  <!-- Chrome / Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="black">
+  <link rel="icon" href="icon.png">
+
+  <!-- Safari / iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png">
+
+  <!-- Web Components -->
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="bower_components/polymer/polymer.html">
+  <link rel="import" href="bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+  <link rel="import" href="bower_components/iron-icons/iron-icons.html">
+  <link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
+  <link rel="import" href="bower_components/paper-item/paper-item-body.html">
+  <link rel="import" href="bower_components/paper-item/paper-icon-item.html">
+  <link rel="import" href="bower_components/iron-collapse/iron-collapse.html">
+  <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+  <link rel="import" href="elements/inbox-list/inbox-list.html">
+
+  <style>
+    body {
+      background-color: #c5cae9;
+    }
+
+    #container {
+      width: 70%;
+      margin: 50px auto 50px auto;
+    }
+
+    .avatar {
+      border-radius: 50%;
+      overflow: hidden;
+      background: #ccc;
+    }
+
+    .small {
+      width: 40px;
+      height: 40px;
+    }
+
+    .big {
+      width: 200px;
+      height: 200px;
+      margin: 25px;
+    }
+  </style>
+</head>
+<body unresolved>
+  <template is="dom-bind" id="app">
+    <div id="container">
+      <inbox-list>
+        <template is="dom-repeat" items={{users.results}}>
+          <div> <!-- Important ! We have to add a div to separate the different entry of the list -->
+            <paper-icon-item>
+              <img src="[[item.user.picture.thumbnail]]" class="avatar small" item-icon />
+              <paper-item-body two-line>
+                <div>[[item.user.name.first]] [[item.user.name.last]]</div>
+                <div secondary>[[item.user.username]]</div>
+              </paper-item-body>
+              <paper-icon-button icon="star"></paper-icon-button>
+            </paper-icon-item>
+
+            <iron-collapse class="layout horizontal center">
+              <img class="avatar big" src="[[item.user.picture.large]]"/>
+              <div>
+                <strong>Email : </strong>[[item.user.email]]<br /><br />
+                <strong>Street : </strong>[[item.user.location.street]]<br /><br />
+                <strong>City : </strong>[[item.user.location.city]]<br /><br />
+                <strong>State : </strong>[[item.user.location.state]]<br /><br />
+                <strong>Zip : </strong>[[item.user.location.zip]]
+              </div>
+            </iron-collapse>
+          </div>
+        </template>
+      </inbox-list>
+    </div>
+
+    <iron-ajax
+      auto
+      id="usersAjax"
+      url="https://randomuser.me/api/?results=10"
+      handle-as="json"
+      last-response="{{users}}"></iron-ajax>
+
+  </template>
+</body>
+</html>

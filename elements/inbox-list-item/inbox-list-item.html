@@ -1,0 +1,60 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../../bower_components/paper-styles/shadow.html">
+
+<dom-module id="inbox-list-item">
+  <style>
+
+    :host {
+      display: block;
+      background-color: white;
+
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+
+      width: 98%;
+      margin: 0px auto 0px auto;
+      @apply(--shadow-elevation-2dp);
+    }
+
+    :host.iron-selected {
+      width: 100%;
+      margin: 15px auto 15px auto;
+      @apply(--shadow-elevation-16dp);
+    }
+
+    :host ::content paper-item:focus:before,
+    :host ::content paper-icon-item:focus:before {
+      background: none;
+    }
+
+    :host.iron-selected ::content paper-item,
+    :host.iron-selected ::content paper-icon-item {
+      font-weight: bold;
+    }
+
+    :host:not(.iron-selected) ::content paper-item,
+    :host:not(.iron-selected) ::content paper-icon-item {
+      cursor: pointer;
+    }
+
+  </style>
+
+  <template>
+    <content select=":not([collapse])"></content>
+    <iron-collapse id="collapse">
+      <content select="[collapse]"></content>
+    </iron-collapse>
+  </template>
+  <script>
+    Polymer({
+      is: 'inbox-list-item',
+
+      open: function(bool) {
+        this.$.collapse.opened = bool;
+      }
+    });
+  </script>
+</dom-module>

@@ -30,7 +30,9 @@
   <link rel="import" href="bower_components/paper-item/paper-icon-item.html">
   <link rel="import" href="bower_components/iron-collapse/iron-collapse.html">
   <link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+
   <link rel="import" href="elements/inbox-list/inbox-list.html">
+  <link rel="import" href="elements/inbox-list-item/inbox-list-item.html">
 
   <style>
     body {
@@ -65,7 +67,7 @@
     <div id="container">
       <inbox-list>
         <template is="dom-repeat" items={{users.results}}>
-          <div> <!-- Important ! We have to add a div to separate the different entry of the list -->
+          <inbox-list-item>
             <paper-icon-item>
               <img src="[[item.user.picture.thumbnail]]" class="avatar small" item-icon />
               <paper-item-body two-line>
@@ -75,7 +77,7 @@
               <paper-icon-button icon="star"></paper-icon-button>
             </paper-icon-item>
 
-            <iron-collapse class="layout horizontal center">
+            <div collapse class="layout horizontal center">
               <img class="avatar big" src="[[item.user.picture.large]]"/>
               <div>
                 <strong>Email : </strong>[[item.user.email]]<br /><br />
@@ -84,8 +86,8 @@
                 <strong>State : </strong>[[item.user.location.state]]<br /><br />
                 <strong>Zip : </strong>[[item.user.location.zip]]
               </div>
-            </iron-collapse>
-          </div>
+            </div>
+          </inbox-list-item>
         </template>
       </inbox-list>
     </div>

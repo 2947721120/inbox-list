@@ -1,6 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
-<link rel="import" href="../../bower_components/paper-styles/shadow.html">
 
 <dom-module id="inbox-list">
   <template>
@@ -8,41 +7,6 @@
       :host {
         display: block;
       }
-
-      iron-selector ::content > * {
-        background-color: white;
-
-        -webkit-transition: all 0.4s ease-in-out;
-        -moz-transition: all 0.4s ease-in-out;
-        -o-transition: all 0.4s ease-in-out;
-        transition: all 0.4s ease-in-out;
-
-        width: 98%;
-        margin: 0px auto 0px auto;
-        @apply(--shadow-elevation-2dp);
-      }
-
-      iron-selector ::content > .iron-selected {
-        width: 100%;
-        margin: 15px auto 15px auto;
-        @apply(--shadow-elevation-16dp);
-      }
-
-      iron-selector ::content paper-item:focus:before,
-      iron-selector ::content paper-icon-item:focus:before {
-        background: none;
-      }
-
-      iron-selector ::content > :not(.iron-selected) paper-item
-      iron-selector ::content > :not(.iron-selected) paper-icon-item {
-        cursor: pointer;
-      }
-
-      iron-selector ::content > .iron-selected paper-item,
-      iron-selector ::content > .iron-selected paper-icon-item {
-        font-weight: bold;
-      }
-
     </style>
 
     <iron-selector id="selector" on-iron-select="_onIronSelect" on-iron-deselect="_onIronDeselect">
@@ -58,27 +22,13 @@
         is: 'inbox-list',
 
         _onIronSelect: function(event) {
-          var item = this._highestBeforeSelector(event.detail.item);
-          var collapseTags = Polymer.dom(item).querySelectorAll('iron-collapse');
-          if (collapseTags) {
-            collapseTags.forEach(function(collapse) { collapse.opened = true; });
-          }
+          var inboxItem = event.detail.item;
+          inboxItem.open(true);
         },
 
         _onIronDeselect: function(event) {
-          var item = this._highestBeforeSelector(event.detail.item);
-          var collapseTags = Polymer.dom(item).querySelectorAll('iron-collapse');
-          if (collapseTags) {
-            collapseTags.forEach(function(collapse) { collapse.opened = false; });
-          }
-        },
-
-        _highestBeforeSelector: function(node) {
-          var selector = this.$.selector;
-          while (node.parentNode !== selector) {
-            node = node.parentNode;
-          }
-          return node;
+          var inboxItem = event.detail.item;
+          inboxItem.open(false);
         },
 
         ready: function() {

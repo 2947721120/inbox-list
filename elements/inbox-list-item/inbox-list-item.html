@@ -19,25 +19,14 @@
       @apply(--shadow-elevation-2dp);
     }
 
-    :host.iron-selected {
-      width: 100%;
-      margin: 15px auto 15px auto;
-      @apply(--shadow-elevation-16dp);
+    :host ::content paper-item,
+    :host ::content paper-icon-item {
+      cursor: pointer;
     }
 
     :host ::content paper-item:focus:before,
     :host ::content paper-icon-item:focus:before {
       background: none;
-    }
-
-    :host.iron-selected ::content paper-item,
-    :host.iron-selected ::content paper-icon-item {
-      font-weight: bold;
-    }
-
-    :host:not(.iron-selected) ::content paper-item,
-    :host:not(.iron-selected) ::content paper-icon-item {
-      cursor: pointer;
     }
 
   </style>

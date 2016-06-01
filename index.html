@@ -36,7 +36,7 @@
 
   <style>
     body {
-      background-color: #c5cae9;
+      background-color: #FAFAFA;
     }
 
     #container {
@@ -69,22 +69,22 @@
         <template is="dom-repeat" items={{users.results}}>
           <inbox-list-item>
             <paper-icon-item>
-              <img src="[[item.user.picture.thumbnail]]" class="avatar small" item-icon />
+              <img src="[[item.picture.thumbnail]]" class="avatar small" item-icon />
               <paper-item-body two-line>
-                <div>[[item.user.name.first]] [[item.user.name.last]]</div>
-                <div secondary>[[item.user.username]]</div>
+                <div>[[item.name.first]] [[item.name.last]]</div>
+                <div secondary>[[item.username]]</div>
               </paper-item-body>
               <paper-icon-button icon="star"></paper-icon-button>
             </paper-icon-item>
 
             <div collapse class="layout horizontal center">
-              <img class="avatar big" src="[[item.user.picture.large]]"/>
+              <img class="avatar big" src="[[item.picture.large]]"/>
               <div>
-                <strong>Email : </strong>[[item.user.email]]<br /><br />
-                <strong>Street : </strong>[[item.user.location.street]]<br /><br />
-                <strong>City : </strong>[[item.user.location.city]]<br /><br />
-                <strong>State : </strong>[[item.user.location.state]]<br /><br />
-                <strong>Zip : </strong>[[item.user.location.zip]]
+                <strong>Email : </strong>[[item.email]]<br /><br />
+                <strong>Street : </strong>[[item.location.street]]<br /><br />
+                <strong>City : </strong>[[item.location.city]]<br /><br />
+                <strong>State : </strong>[[item.location.state]]<br /><br />
+                <strong>Zip : </strong>[[item.location.zip]]
               </div>
             </div>
           </inbox-list-item>
